@@ -21,10 +21,10 @@ constructor(private formBuilder: FormBuilder, private empService: EmployeeServic
 
   this.empDetailsForm = this.formBuilder.group({
     id: [''],
-    name: [' '],
-    email: [' '],
-    phone: [' '],
-    title: [' ']
+    firstName: [' '],
+    lastName: [' '],
+    yearlySalary: [' '],
+    retirementPlan: [' ']
   });
 
 }
@@ -46,10 +46,10 @@ ngOnInit(): void{
 
 addEmployee() {
   this.employeeObj.id =    this.empDetailsForm.value.id;
-  this.employeeObj.name =  this.empDetailsForm.value.name;
-  this.employeeObj.email = this.empDetailsForm.value.email;
-  this.employeeObj.phone = this.empDetailsForm.value.phone;
-  this.employeeObj.title = this.empDetailsForm.value.title;
+  this.employeeObj.firstName =  this.empDetailsForm.value.firstName;
+  this.employeeObj.lastName = this.empDetailsForm.value.lastName;
+  this.employeeObj.yearlySalary = this.empDetailsForm.value.yearlySalary;
+  this.employeeObj.retirementPlan = this.empDetailsForm.value.retirementPlan;
 
   this.empService.addEmployee(this.employeeObj).subscribe(res => {
     this.getAllEmployee();
@@ -70,20 +70,20 @@ editEmployee(emp:Employee) {
   //console.log(emp.id);
   
   this.empDetailsForm.controls['id'].setValue(emp.id)
-  this.empDetailsForm.controls['name'].setValue(emp.name);
-  this.empDetailsForm.controls['email'].setValue(emp.email);
-  this.empDetailsForm.controls['phone'].setValue(emp.phone);
-  this.empDetailsForm.controls['title'].setValue(emp.title);
+  this.empDetailsForm.controls['firstName'].setValue(emp.firstName);
+  this.empDetailsForm.controls['lastName'].setValue(emp.lastName);
+  this.empDetailsForm.controls['yearlySalary'].setValue(emp.yearlySalary);
+  this.empDetailsForm.controls['retirementPlan'].setValue(emp.retirementPlan);
 }
 
 
 updateEmployee() {
 
   this.employeeObj.id = this.empDetailsForm.value.id;
-  this.employeeObj.name = this.empDetailsForm.value.name;
-  this.employeeObj.email = this.empDetailsForm.value.email;
-  this.employeeObj.phone = this.empDetailsForm.value.phone;
-  this.employeeObj.title = this.empDetailsForm.value.title;
+  this.employeeObj.firstName = this.empDetailsForm.value.firstName;
+  this.employeeObj.lastName = this.empDetailsForm.value.lastName;
+  this.employeeObj.yearlySalary = this.empDetailsForm.value.yearlySalary;
+  this.employeeObj.retirementPlan = this.empDetailsForm.value.retirement;
 
   this.empService.updateEmployee(this.employeeObj).subscribe(res => {
     console.log(res);
