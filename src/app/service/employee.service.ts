@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Employee } from '../model/employee';
 import { CredentialModel } from '../model/credentialMode';
+import { EmployeeRequest } from '../model/employee-request';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +18,25 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {
     
-    this.addEmployeeUrl = 'http://localhost:9292/api/v1/employees/save';
+    this.addEmployeeUrl = 'http://localhost:8080/api/v1/employees/add';
     this.getAllEmployeeUrl = 'http://localhost:8080/api/v1/employees/list';
-    this.deleteEmployeeUrl = 'http://localhost:9292/api/v1/employees/delete/';
-    this.updateEmployeeUrl = 'http://localhost:9292/api/v1/employees/edit/';
+    this.deleteEmployeeUrl = 'http://localhost:8080/api/v1/employees/delete/';
+    this.updateEmployeeUrl = 'http://localhost:8080/api/v1/employees/edit/';
 
    }
 
-   addEmployee(emp: Employee): Observable<Employee> {
+   addEmployee(empRequest: EmployeeRequest): Observable<EmployeeRequest> {
 
-    return this.http.post<Employee>(this.addEmployeeUrl, emp);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": localStorage.getItem("token") || ""
+      // add any other headers if needed
+    });
+
+    console.log(empRequest);
+    
+
+    return this.http.post<EmployeeRequest>(this.addEmployeeUrl, empRequest, {headers});
    }
 
    getAllEmployee(): Observable<Employee[]>{
@@ -39,7 +49,7 @@ export class EmployeeService {
    }
 
    login(): Observable<CredentialModel>{
-      const url = "http://localhost:8080/auth/login";
+      const url = "http://localhost:8080/api/v1/users/auth/login";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
       // add any other headers if needed

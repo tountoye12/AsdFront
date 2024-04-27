@@ -21,7 +21,7 @@
             <th scope="col">Employee ID</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
-            <th scope="col">Yearl ySalary</th>
+            <th scope="col">Yearly Salary</th>
             <th scope="col">Retirement Plan Ref</th>
             <th scope="col">Action</th>
           </tr>
@@ -31,7 +31,7 @@
             <td>{{employee.id}}</td>
             <td>{{employee.firstName}}</td>
             <td>{{employee.lastName}}</td>
-            <td> $ | {{employee.yearlySalary}}</td>
+            <td> ${{employee.yearlySalary}}</td>
             <td>{{employee.retirementPlan?.referenceNumber}}</td>
             <td>
                 <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editEmployee" (click)="editEmployee(employee)">Edit</button>
@@ -55,29 +55,40 @@
         </div>
         <div class="modal-body">
       
-            <form [formGroup]="empDetailsForm">
+            <form [formGroup]="empResquestForm">
+                
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Id </label>
-                    <input type="text" formControlName="id" class="form-control" id="id" aria-describedby="id">
-                </div>
-
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">firstName </label>
+                    <label for="exampleInputEmail1" class="form-label">first Name </label>
                     <input type="text" formControlName="firstName" class="form-control" id="firstName" aria-describedby="firstName">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">lastName </label>
+                  <label for="exampleInputEmail1" class="form-label">last Name </label>
                   <input type="email" formControlName="lastName" class="form-control" id="lastName" aria-describedby="lastName">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">yearlySalary </label>
+                    <label for="exampleInputEmail1" class="form-label">yearly Salary </label>
                     <input type="text" formControlName="yearlySalary" class="form-control" id="yearlySalary" aria-describedby="yearlySalary">
                 </div>
 
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">retirementPlan </label>
-                  <input type="text" formControlName="retirementPlan" class="form-control" id="retirementPlan" aria-describedby="retirementPlan">
+                  <label for="exampleInputEmail1" class="form-label">Reference Number </label>
+                  <input type="text" formControlName="referenceNumber" class="form-control" id="referenceNumber" aria-describedby="referenceNumber">
               </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Retirement Date</label>
+                <input type="text" formControlName="retirementDate" class="form-control" id="retirementDate" aria-describedby="retirementDate">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Enrollment Date</label>
+              <input type="text" formControlName="enrollmentDate" class="form-control" id="enrollmentDate" aria-describedby="enrollmentDate">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Monthly Contribution</label>
+            <input type="text" formControlName="monthlyContribution" class="form-control" id="monthlyContribution" aria-describedby="monthlyContribution">
+        </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addEmployee()">Add employee</button>
