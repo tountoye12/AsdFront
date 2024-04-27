@@ -20,7 +20,7 @@ export class EmployeeService {
     
     this.addEmployeeUrl = 'http://localhost:8080/api/v1/employees/add';
     this.getAllEmployeeUrl = 'http://localhost:8080/api/v1/employees/list';
-    this.deleteEmployeeUrl = 'http://localhost:8080/api/v1/employees/delete/';
+    this.deleteEmployeeUrl = 'http://localhost:8080/api/v1/employees/';
     this.updateEmployeeUrl = 'http://localhost:8080/api/v1/employees/edit/';
 
    }
@@ -69,7 +69,13 @@ export class EmployeeService {
 
 
    deleteEmployee(emp:Employee): Observable<Employee> {
-
-      return this.http.delete<Employee>(this.deleteEmployeeUrl + emp.id);
+    console.log("Deleting");
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Authorization": localStorage.getItem("token") || ""
+      // add any other headers if needed
+    });
+      return this.http.delete<Employee>(this.deleteEmployeeUrl + emp.id, {headers});
    }
 }

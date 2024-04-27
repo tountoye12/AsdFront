@@ -48,12 +48,12 @@ ngOnInit(): void{
   this.empService.login().subscribe(
     (res: CredentialModel) => {
       localStorage.setItem("token", `Bearer ${res.token}`);    
-      console.log(res)
+      // console.log(res)
     }, 
-    error => {
-      console.log("error")
-      console.log(error)
-    }
+    // error => {
+    //   console.log("error")
+    //   console.log(error)
+    // }
   )
   this.getAllEmployee();
 }
@@ -114,7 +114,7 @@ deleteEmployee(employee:Employee){
 
   this.empService.deleteEmployee(employee).subscribe(res => {
     //this.employeeList.filter(emp => emp.id != employee.id);
-    alert('Employee deleted successfully');
+    //alert('Employee deleted successfully');
     this.getAllEmployee();
     console.log(res);
     
